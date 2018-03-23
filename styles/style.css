@@ -1,0 +1,123 @@
+ .md-body-1{
+    font-size: 8px;
+    color: #919191;
+  }
+  .md-headline{
+    font-weight: bolder;
+  }
+  .progress{
+    padding-left: 5px;
+  }
+  .hideBtn{
+    text-align: left; 
+     font-size: 10px;
+     color: #919191;
+     font-weight: bolder;
+     min-width:  23px !important;
+
+  }
+
+  .showBtn > a{
+    font-size: 10px;
+    color: #79BBEE;
+    font-weight: bolder;
+    text-decoration: none;
+
+  }
+
+header > h1{
+  margin-left: 77px;
+  text-decoration: underline;
+}
+
+header{
+  background: #F9F9F9;
+}
+
+md-card{
+  width: 250px;
+  max-width: 250px;
+  height: 500px;
+
+}
+
+.headerDivider{
+  display: block;
+    border-top: 3px solid #5CA3CC;
+    margin: 0;
+}
+
+.buttonDivider{
+  display: block;
+    border-top: 3px solid #18B9A0;
+    margin: 0;
+}
+
+.dashboardLinkContainer{
+  height: 40px;
+  margin: 2px 0px;
+  box-shadow: 0 4px 6px -6px #222;
+}
+
+.dashboardLinkContainer > h4{
+  padding-left: 77px;
+}
+
+.dashboardLinkContainer > h4 > a{
+text-decoration: none;
+color: black;
+}
+
+.campaignNameContainer{
+height: 40px;
+  margin: 2px 0px;
+  padding-left: 77px;
+  box-shadow: 0 4px 6px -6px #222;
+}
+
+.md-raised{
+  margin-left: 0px;
+  margin-right: 0px;
+  font-size: 12px;
+  font-weight: bolder;
+  
+}
+
+#instagram{
+  margin-left: 30px;
+}
+
+
+a{
+  text-decoration: inderline;
+  color: #5091F9;
+
+}
+
+
+.md-body-2{
+  font-size: 11px;
+  color: #919191;
+}
+
+
+.campaingCards{
+  height: 330px;
+}
+
+
+.rejectButton{
+  font-size: 13px;
+  color: black;
+  font-weight: bolder;
+}
+
+.approvedButton{
+   font-size: 13px;
+   color: #5091F9;
+  font-weight: bolder;
+}
+
+.userName{
+  font-weight: bolder;
+}

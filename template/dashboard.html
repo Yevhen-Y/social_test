@@ -1,0 +1,45 @@
+<div ng-controller="dashboardCtrl" ng-cloak>
+    <header>
+        <h1>Dashboard page</h1>
+    </header>
+    <div class="dashboardLinkContainer">
+        <h4><a href="#/">Dashboard</a></h4>
+    </div>
+    <md-content class="md-padding" layout-md="row" layout="row" layout-wrap>
+        <md-card ng-repeat="campaing in campaigns" flex-md class="campaingCards">
+            <md-card-header>
+                <md-card-header-text>
+                    <span class="md-title">{{campaing.name}}</span>
+                    <span class="md-subhead">{{campaing.type}}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <md-divider class="headerDivider"></md-divider>
+            <md-card-details layout="row" layout-wrap>
+                <md-card-content flex="50">
+                    <div class="md-body-1">APPROVED POSTS</div>
+                    <div class="md-headline">{{campaing.approved_posts}}</div>
+                </md-card-content>
+                <md-card-content flex="50">
+                    <div class="md-body-1">INFLUENCERS</div>
+                    <div class="md-headline">{{campaing.num_of_artists}}</div>
+                </md-card-content>
+                <md-card-content flex="50">
+                    <div class="md-body-1">LIKES</div>
+                    <div class="md-headline">{{campaing.approved_likes}}</div>
+                </md-card-content>
+                <md-card-content flex="50">
+                    <div class="md-body-1">COMMENTS</div>
+                    <div class="md-headline">{{campaing.approved_comments}}</div>
+                </md-card-content>
+                <div flex="50">
+                    <div class="md-body-1 progress">{{campaing.progress}} % ({{campaing.days_passed}}/{{campaing.days_total}})</div>
+                </div>
+            </md-card-details>
+            <md-divider class="buttonDivider"></md-divider>
+            <md-card-actions layout="row" layout-align="space-around center">
+                <md-button class="hideBtn" ng-click="hideCard($index)">HIDE</md-button>
+                <md-button class="showBtn"><a href="#/campaigns/{{$index}}">SHOW DETAILS</a></md-button>
+            </md-card-actions>
+        </md-card>
+    </md-content>
+</div>

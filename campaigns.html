@@ -1,0 +1,184 @@
+  <div class="dashboardLinkContainer">
+    <h4><a href="#/">Dashboard</a></h4>
+  </div>
+<div ng-controller="campaignsCtrl" ng-init='load()' ng-cloak>
+<div class="campaignNameContainer">
+    <h4>{{campaign.name}}</h4>
+  </div>
+
+<section layout="row"  layout-align="start center" layout-wrap class="social">
+      <md-button class="md-raised" id="Instagram" ng-click="sortBySocial($event)">INSTAGRAM</md-button>
+      <md-button class="md-raised" id="Youtube"  ng-click="sortBySocial($event)">YOUTUBE</md-button>
+      <md-button class="md-raised" id="Facebook"  ng-click="sortBySocial($event)">FACEBOOK</md-button>
+      <md-button class="md-raised" id="Twitter"  ng-click="sortBySocial($event)">TWITTER</md-button>
+    </section>
+
+    <md-content layout-align="center center">
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="PENDING">
+        <md-content class="md-padding" layout-md="row" layout="row" layout-wrap >
+          <md-card ng-hide="myVar1" ng-repeat=" card in media" flex-md class="allSocial">
+        <md-card-header>
+          <md-card-avatar>
+            <img class="md-user-avatar" src="{{card.author_pic}}"/>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">@{{card.author_username}}</span>
+            <span class="md-subhead"><a href="{{card.link}}" target="_blank">{{card.social_network}}</a></span>
+          </md-card-header-text>
+        </md-card-header>
+        <img ng-src="{{card.pic}}" class="md-card-image" alt="picture">
+         <md-card-details layout="row" layout-wrap  >
+  <md-card-content flex="50">
+    <div class="md-body-2">LIKES</div>
+   <div class="md-headline">{{card.likes_number}}</div>
+</md-card-content>
+  <md-card-content flex="50">
+    <div class="md-body-2">COMMENTS</div>
+        <div class="md-headline">{{card.comments_number}}</div>
+</md-card-content>
+        </md-card-details>
+      <md-divider></md-divider>
+        <md-card-actions layout="row" layout-align="space-around center">
+          <md-button class="rejectButton" id="{{card.id}}" name="media" ng-click="moveToReject($event)">REJECT</md-button>
+          <md-button class="approvedButton" id="{{card.id}}" ng-click="moveToApproved($event)">APPROVED</md-button>
+        </md-card-actions>
+      </md-card>
+           <md-card ng-hide="myVar2" ng-repeat=" card in media | filter: {social_network: social}" flex-md class="chosenSocial">
+        <md-card-header>
+                 <md-card-avatar>
+            <img class="md-user-avatar" src="{{card.author_pic}}"/>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title" >@{{card.author_username}}</span>
+            <span class="md-subhead"><a href="{{card.link}}" target="_blank">{{card.social_network}}</a></span>
+          </md-card-header-text>
+        </md-card-header>
+     <img ng-src="{{card.pic}}" class="md-card-image" alt="picture">
+         <md-card-details layout="row" layout-wrap  >
+  <md-card-content flex="50">
+    <div class="md-body-2">LIKES</div>
+   <div class="md-headline">{{card.likes_number}}</div>
+</md-card-content>
+  <md-card-content flex="50">
+    <div class="md-body-2">COMMENTS</div>
+        <div class="md-headline">{{card.comments_number}}</div>
+</md-card-content>
+        </md-card-details>
+<md-divider></md-divider>
+        <md-card-actions layout="row" layout-align="space-around center">
+          <md-button class="rejectButton" id="{{card.id}}" name="media" ng-click="moveToReject($event)">REJECT</md-button>
+          <md-button class="approvedButton" id="{{card.id}}" ng-click="moveToApproved($event)">APPROVED</md-button>
+        </md-card-actions>
+      </md-card>
+        </md-content>
+      </md-tab>
+
+      <md-tab label="APPROVED"">
+        <md-content class="md-padding" layout-md="row" layout="row" layout-wrap>
+           <md-card ng-hide="myVar1" ng-repeat=" card in approvedCards" flex-md class="allSocial">
+        <md-card-header>
+          <md-card-avatar>
+            <img class="md-user-avatar" src="{{card.author_pic}}"/>
+          </md-card-avatar>
+               <md-card-header-text>
+            <span class="md-title" >@{{card.author_username}}</span>
+            <span class="md-subhead"><a href="{{card.link}}" target="_blank">{{card.social_network}}</a></span>
+          </md-card-header-text>
+        </md-card-header>
+        <img ng-src="{{card.pic}}" class="md-card-image" alt="picture">
+         <md-card-details layout="row" layout-wrap  >
+  <md-card-content flex="50">
+    <div class="md-body-2">LIKES</div>
+   <div class="md-headline">{{card.likes_number}}</div>
+</md-card-content>
+  <md-card-content flex="50">
+    <div class="md-body-2">COMMENTS</div>
+        <div class="md-headline">{{card.comments_number}}</div>
+</md-card-content>
+<md-divider></md-divider>
+        </md-card-details>
+        <md-card-actions layout="row" layout-align="start center">
+          <md-button class="rejectButton" id="{{card.id}}" name="approved" ng-click="moveToReject($event)">REJECT</md-button>
+        </md-card-actions>
+      </md-card>
+      <md-card  ng-hide="myVar2" ng-repeat=" card in approvedCards | filter: {social_network: social}" flex-md class="chosenSocial">
+       <md-card-header>
+          <md-card-avatar>
+            <img class="md-user-avatar" src="{{card.author_pic}}"/>
+          </md-card-avatar>
+               <md-card-header-text>
+            <span class="md-title" >@{{card.author_username}}</span>
+            <span class="md-subhead"><a href="{{card.link}}" target="_blank">{{card.social_network}}</a></span>
+          </md-card-header-text>
+        </md-card-header>
+       <img ng-src="{{card.pic}}" class="md-card-image" alt="picture">
+         <md-card-details layout="row" layout-wrap  >
+  <md-card-content flex="50">
+    <div class="md-body-2">LIKES</div>
+   <div class="md-headline">{{card.likes_number}}</div>
+</md-card-content>
+  <md-card-content flex="50">
+    <div class="md-body-2">COMMENTS</div>
+        <div class="md-headline">{{card.comments_number}}</div>
+</md-card-content>
+</md-card-details>
+<md-divider></md-divider>
+        <md-card-actions layout="row" layout-align="start center">
+          <md-button class="rejectButton" id="{{card.id}}" name="approved" ng-click="moveToReject($event)">REJECT</md-button>
+        </md-card-actions>
+      </md-card>
+        </md-content>
+      </md-tab>
+
+      <md-tab label="REJECTED">
+        <md-content class="md-padding" layout-md="row" layout="row" layout-wrap>
+          <md-card ng-hide="myVar1" ng-repeat=" card in rejectedCards" flex-md class="allSocial">
+        <md-card-header>
+          <md-card-avatar>
+            <img class="md-user-avatar" src="{{card.author_pic}}"/>
+          </md-card-avatar>
+               <md-card-header-text>
+            <span class="md-title" >@{{card.author_username}}</span>
+            <span class="md-subhead"><a href="{{card.link}}" target="_blank">{{card.social_network}}</a></span>
+          </md-card-header-text>
+        </md-card-header>
+        <img ng-src="{{card.pic}}" class="md-card-image" alt="picture">
+         <md-card-details layout="row" layout-wrap  >
+  <md-card-content flex="50">
+    <div class="md-body-2">LIKES</div>
+   <div class="md-headline">{{card.likes_number}}</div>
+</md-card-content>
+  <md-card-content flex="50">
+    <div class="md-body-2">COMMENTS</div>
+        <div class="md-headline">{{card.comments_number}}</div>
+</md-card-content>
+</md-card-details>
+     </md-card>
+      <md-card  ng-hide="myVar2" ng-repeat=" card in rejectedCards | filter: {social_network: social}" flex-md class="chosenSocial">
+       <md-card-header>
+          <md-card-avatar>
+            <img class="md-user-avatar" src="{{card.author_pic}}"/>
+          </md-card-avatar>
+               <md-card-header-text>
+            <span class="md-title" >@{{card.author_username}}</span>
+            <span class="md-subhead"><a href="{{card.link}}" target="_blank">{{card.social_network}}</a></span>
+          </md-card-header-text>
+        </md-card-header>
+        <img ng-src="{{card.pic}}" class="md-card-image" alt="picture">
+         <md-card-details layout="row" layout-wrap  >
+  <md-card-content flex="50">
+    <div class="md-body-2">LIKES</div>
+   <div class="md-headline">{{card.likes_number}}</div>
+</md-card-content>
+  <md-card-content flex="50">
+    <div class="md-body-2">COMMENTS</div>
+        <div class="md-headline">{{card.comments_number}}</div>
+</md-card-content>
+</md-card-details>
+      </md-card>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
